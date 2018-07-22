@@ -2,15 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AuthComponent } from './components/auth/auth.component';
+import { ImageDataUploadComponent } from './image-data-upload/image-data-upload.component';
+import { CallbackComponent } from './callback/callback.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent
+    ImageDataUploadComponent,
+    CallbackComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

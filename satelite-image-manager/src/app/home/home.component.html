@@ -1,0 +1,9 @@
+<h1>Home</h1>
+
+<div *ngIf="!auth.authenticated">
+  <button (click)="auth.login()">Log In</button>
+</div>
+<div *ngIf="auth.authenticated">
+  <p>Hello</p>
+  <button (click)="auth.logout()">Log Out</button>
+</div>
