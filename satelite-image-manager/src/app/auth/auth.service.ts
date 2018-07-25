@@ -16,7 +16,7 @@ export class AuthService {
     domain: environment.auth0.domain,
     responseType: 'token',
     redirectUri: environment.auth0.redirect,
-    // audience: environment.auth0.audience,
+    audience: environment.auth0.audience,
     scope: environment.auth0.scope
   });
   accessToken: string;
