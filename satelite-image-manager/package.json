@@ -1,9 +1,10 @@
 {
-  "name": "satelite-image-manager",
-  "version": "0.0.0",
+  "name": "imisight-upload-img",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-docker": "docker run -it -p 4200:4200 -v ${PWD}:/opt/imisight-upload-img --env-file ./env.list --rm imisight-upload-img",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

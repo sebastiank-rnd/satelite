@@ -1,5 +1,5 @@
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-  <div class="container">
+  <div title="token: {{token}}" class="container">
     <ul class="nav navbar-nav" routerLinkActive="active">
       <li *ngIf="!auth.authenticated">
         <a href="#" (click)="auth.login()">Login</a>
