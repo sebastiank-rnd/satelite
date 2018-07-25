@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import * as auth0 from 'auth0-js';
-import { AUTH_CONFIG } from './auth0-variables';
-// import { UserProfile } from './profile.model';
 
-(window as any).global = window;
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,14 +12,13 @@ export class AuthService {
   // @TODO: Update AUTH_CONFIG and remove .example extension in
   // src/app/auth/auth0-variables.ts.example
   private _Auth0 = new auth0.WebAuth({
-    clientID: AUTH_CONFIG.CLIENT_ID,
-    domain: AUTH_CONFIG.CLIENT_DOMAIN,
+    clientID: environment.auth0.clientId,
+    domain: environment.auth0.domain,
     responseType: 'token',
-    redirectUri: AUTH_CONFIG.REDIRECT,
-    // audience: AUTH_CONFIG.AUDIENCE,
-    scope: AUTH_CONFIG.SCOPE
+    redirectUri: environment.auth0.redirect,
+    // audience: environment.auth0.audience,
+    scope: environment.auth0.scope
   });
-  // userProfile: UserProfile;
   accessToken: string;
   expiresAt: number;
 
@@ -69,19 +66,13 @@ export class AuthService {
     // Save session data and update login status subject
     this.expiresAt = authResult.expiresIn * 1000 + Date.now();
     this.accessToken = authResult.accessToken;
-    // this.userProfile = profile;
     this._setLoggedIn(true);
   }
 
   logout() {
-    // Remove token and profile, update login status subject,
-    // and log out of Auth0 authentication session
-    // This does a refresh and redirects back to homepage
-    // Make sure you have the returnTo URL in your Auth0
-    // Dashboard Application settings in Allowed Logout URLs
     this._Auth0.logout({
-      returnTo: AUTH_CONFIG.HOME,
-      clientID: AUTH_CONFIG.CLIENT_ID
+      returnTo: environment.auth0.home,
+      clientID: environment.auth0.clientId
     });
   }
 
@@ -89,9 +80,6 @@ export class AuthService {
     // Check if current date is greater than
     // expiration and user is currently logged in
     const OK: boolean = (Date.now() < this.expiresAt) && this.loggedIn;
-
-    // !OK && console.warn('Not authenticated!');
-    // OK && console.log('Authenticated.');
     return OK;
   }
 

@@ -5,7 +5,7 @@ import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { IA3DataItem } from './IA3DataItem';
-import { environment } from './environment';
+import { environment } from './../../environments/environment';
 import { AuthService } from './../auth/auth.service';
 
 @Injectable({
