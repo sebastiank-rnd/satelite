@@ -7,7 +7,7 @@ export const environment = {
     audience: 'https://gw.sat.imisight.net',
     redirect: 'http://localhost:4200/callback',
     home: 'http://localhost:4200',
-    scope: 'openid profile email'
+    scope: 'openid profile'
   },
   info: {
     token: '334466'

@@ -14,13 +14,11 @@ export class AuthService {
   private _Auth0 = new auth0.WebAuth({
     clientID: environment.auth0.clientId,
     domain: environment.auth0.domain,
-    responseType: 'token',
+    responseType: 'token id_token',
     redirectUri: environment.auth0.redirect,
     audience: environment.auth0.audience,
     scope: environment.auth0.scope
   });
-  accessToken: string;
-  expiresAt: number;
 
   // Create a stream of logged in status to communicate throughout app
   loggedIn: boolean;
@@ -58,28 +56,41 @@ export class AuthService {
   getUserInfo(authResult) {
     // Use access token to retrieve user's profile and set session
     this._Auth0.client.userInfo(authResult.accessToken, (err, profile) => {
-      this._setSession(authResult, profile);
+      this._setSession(authResult);
     });
   }
 
-  private _setSession(authResult, profile) {
+  private _setSession(authResult) {
     // Save session data and update login status subject
-    this.expiresAt = authResult.expiresIn * 1000 + Date.now();
-    this.accessToken = authResult.accessToken;
+    localStorage.setItem('expires_at', (authResult.expiresIn * 1000 + Date.now()).toString());
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
     this._setLoggedIn(true);
   }
 
   logout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
+    this._setLoggedIn(false);
     this._Auth0.logout({
       returnTo: environment.auth0.home,
       clientID: environment.auth0.clientId
     });
   }
 
+  get expiresAt(): number {
+    return parseInt(localStorage.getItem('expires_at'), 10);
+  }
+
+  get idToken(): string {
+    return localStorage.getItem('id_token');
+  }
+
   get authenticated(): boolean {
-    // Check if current date is greater than
-    // expiration and user is currently logged in
-    const OK: boolean = (Date.now() < this.expiresAt) && this.loggedIn;
+    // Check if current date is greater than expiration
+    // --???and user is currently logged in???--
+    const OK: boolean = (Date.now() < this.expiresAt); // && this.loggedIn;
     return OK;
   }
 

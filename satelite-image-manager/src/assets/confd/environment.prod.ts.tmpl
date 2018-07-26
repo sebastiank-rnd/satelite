@@ -7,7 +7,7 @@ export const environment = {
     audience: '{{ getv "/imisight/auth0/audience" "http://localhost:3001/api" }}',
     redirect: '{{ getv "/imisight/auth0/redirect" "http://localhost:4200/callback" }}',
     home: '{{ getv "/imisight/auth0/home" "http://localhost:4200" }}',
-    scope: 'openid profile email'
+    scope: 'openid profile'
   },
   info: {
     token: '{{ getv "/info/token" "something went wrong" }}'
