@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { ThemeModule } from '../../@theme/theme.module';
-import { DashboardComponent } from './dashboard.component';
+import { ImageDataUploadComponent } from './image-data-upload.component';
 
 
 
@@ -10,7 +10,7 @@ import { DashboardComponent } from './dashboard.component';
     ThemeModule,
   ],
   declarations: [
-    DashboardComponent,
+    ImageDataUploadComponent,
   ],
 })
-export class DashboardModule { }
+export class ImageDataUploadModule { }

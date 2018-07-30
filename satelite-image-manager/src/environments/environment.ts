@@ -1,10 +1,10 @@
 export const environment = {
   production: true,
-  gatewayUrl: 'https://gw.sat.imisight.net',
+  gatewayUrl: 'https://imisight-sat.auth0.com/api/v2/',
   auth0: {
-    domain: 'satimisighta.auth0.com',
-    clientId: 'XtI-4B1EfV_6EbKGZilSIjLTiUuy5fhR',
-    audience: 'https://gw.sat.imisight.net',
+    domain: 'imisight-sat.auth0.com',
+    clientId: 'KXLTbs08LtLqrbPwSgn7Ioej0aMB7tf6',
+    audience: 'https://imisight-sat.auth0.com/api/v2/',
     redirect: 'http://localhost:4200/callback',
     home: 'http://localhost:4200',
     scope: 'openid profile'
