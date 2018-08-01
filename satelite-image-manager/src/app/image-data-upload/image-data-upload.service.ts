@@ -12,7 +12,7 @@ import { AuthService } from './../auth/auth.service';
   providedIn: 'root',
 })
 export class ImageDataUploadService {
-  private baseUrl = `${environment.gatewayUrl}`;
+  private baseUrl = `${environment.gatewayUrl}/a3`;
 
   constructor(private httpClient: HttpClient, private auth: AuthService) {  }
 
