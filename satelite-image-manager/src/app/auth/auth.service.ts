@@ -87,6 +87,10 @@ export class AuthService {
     return localStorage.getItem('id_token');
   }
 
+  get accessToken(): string {
+    return localStorage.getItem('access_token');
+  }
+
   get authenticated(): boolean {
     // Check if current date is greater than expiration
     // --???and user is currently logged in???--
